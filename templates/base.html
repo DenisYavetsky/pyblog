@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Блог</title>
+<link rel="stylesheet" href={% static 'css/main.css' %}>
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+	<div class="top">
+		<div class="logo">
+			<img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
+		</div>
+
+        <div class="topnav">
+            <a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
+            <a href="../faq">БОЛЬШОЙ F.A.Q.</a>
+            <a href="../contacts">КОНТАКТЫ</a>
+        </div>
+	</div>
+
+    <div class="middle">
+
+    {% include 'sidebar.html' %}
+    {% include 'content.html' %}
+
+    </div>
+    {% include 'footer.html' %}
+    </div>
+</body>
+</html>

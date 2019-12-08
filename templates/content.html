@@ -1,0 +1,33 @@
+{% load staticfiles %}
+<div class="content">
+    {% block content %}
+        {% for post in posts %}
+
+            <div class="postcard">
+                <div class="postpicture">
+                    <img src="{% static 'img/parse.png' %}" alt="">
+                </div>
+
+                <div class="posttitle">
+                    <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
+                </div>
+
+                <div class="postbody">
+                    {{ post.body|truncatewords:25}}
+                </div>
+
+                <div class="postfooter">
+                    <span>{{ post.date_pub }}</span>
+                    {% for tag in post.tags.all %}
+                    <span><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></span>
+                    {% endfor %}
+                </div>
+
+                <div class="post_read">
+                    <a href="{{ post.get_absolute_url }}" >Читать</a>
+                </div>
+            </div>
+
+        {% endfor %}
+    {% endblock %}
+</div>

@@ -1,0 +1,65 @@
+{% load staticfiles %}
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Блог</title>
+<link rel="stylesheet" href={% static 'css/main.css' %}>
+<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+	<header>
+		<div class="logo">
+			<img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
+		</div>
+
+		<nav>
+			<div class="topnav" id="myTopnav">
+				<a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
+				<a href="../faq">БОЛЬШОЙ F.A.Q.</a>
+				<a href="../contacts">КОНТАКТЫ</a>
+			</div>
+		</nav>
+	</header>
+
+    <div class="middle">
+
+    {% include 'sidebar.html' %}
+
+    <div class="content">
+        {% block content %}
+
+            {% for post in category.posts.all %}
+
+            <div class="postcard">
+                <div class="postpicture">
+                    <img src="{% static 'img/djangockeditr.png' %}" alt="">
+                </div>
+
+                <div class="posttitle">
+                    <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
+                </div>
+
+                <div class="postbody">
+                    {{ post.body|truncatewords:25}}
+                </div>
+
+                <div class="postfooter">
+                    <span>{{ post.date_pub }}</span>
+                    {% for tag in post.tags.all %}
+                    <span><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></span>
+                    {% endfor %}
+                </div>
+
+                <div class="post_read">
+                    <a href="{{ post.get_absolute_url }}" >Читать</a>
+                </div>
+            </div>
+            {% endfor %}
+        {% endblock %}
+    </div>
+
+    </div>
+    {% include 'footer.html' %}
+</body>
+</html>
