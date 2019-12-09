@@ -80,19 +80,6 @@ body{
    }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .logo{
 	'margin: 10px 145px 10px 145px;
 	'height: auto;
@@ -135,9 +122,9 @@ body{
 
 .postcard-large{
 	clear: none;
-	width: 77%;
+	width: 98%;
     background: #ffffff;
-	margin: 30px 15px 0px 0px; /* Значения отступа от правого блока */
+	margin: 0px 10px 10px 0px; /* Значения отступа от правого блока */
 	float:left;
 	border: 1px solid #f0f0f0;
 	border-radius: 5px;
@@ -197,6 +184,10 @@ body{
 	margin-top: 5px;
 }
 
+.category-item a:hover {
+	color: #3765ff;
+	border-bottom: 1px solid #3765ff;
+}
 .tag{
 	margin-bottom: 20px;
 }
@@ -212,10 +203,16 @@ body{
 
 .tag-item{
 	font-size: 18px;
-	margin-left: 15px;
+	margin-left: 5px;
 	margin-top: 5px;
-}
 
+}
+.tag-item a:hover{
+	color: #3765ff;
+	border-bottom: 1px solid #3765ff;
+
+
+}
 /*--------------------------------------------------------*/
 
 

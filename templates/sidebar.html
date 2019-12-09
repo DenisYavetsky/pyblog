@@ -14,14 +14,14 @@
 
         <div class="tag">
             <div class="tag-title">
-            Метки
+            Теги
             </div>
-            <div class="tag-item">
-                {% block tags %}
-                    {% for tag in tags %}
+                 <div class="tag-item">
+                     {% block tags %}
+                        {% for tag in tags %}
                         <a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a>
-                    {% endfor %}
-                {% endblock %}
-            </div>
+                        {% endfor %}
+                     {% endblock %}
+                 </div>
         </div>
 </div>
