@@ -24,7 +24,31 @@
     <div class="middle">
 
     {% include 'sidebar.html' %}
-    {% include 'content.html' %}
+
+    <div class="content">
+        {% block content %}
+
+            <div class="postcard-large">
+                <div class="posttitle">
+                    <h1>Большой F.A.Q.</h1>
+                </div>
+
+                <div class="postbody">
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                     <br>
+                </div>
+            </div>
+
+        {% endblock %}
+    </div>
 
     </div>
     {% include 'footer.html' %}

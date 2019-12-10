@@ -3,6 +3,13 @@ from .models import Post, Tag, Category
 from django.shortcuts import get_object_or_404
 
 
+def faq(request):
+    posts = Post.objects.all()
+    tags = Tag.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'faq.html', context={'posts': posts, 'tags': tags, 'categories': categories})
+
+
 def posts_list(request):
     posts = Post.objects.all()
     tags = Tag.objects.all()
