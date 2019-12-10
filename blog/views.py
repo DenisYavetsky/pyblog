@@ -10,6 +10,13 @@ def faq(request):
     return render(request, 'faq.html', context={'posts': posts, 'tags': tags, 'categories': categories})
 
 
+def contacts(request):
+    posts = Post.objects.all()
+    tags = Tag.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'contacts.html', context={'posts': posts, 'tags': tags, 'categories': categories})
+
+
 def posts_list(request):
     posts = Post.objects.all()
     tags = Tag.objects.all()
