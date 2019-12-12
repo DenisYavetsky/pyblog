@@ -1,8 +1,9 @@
-from django.urls import path
+from django.urls import path, include
 from blog import views
 
 
 urlpatterns = [
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', views.posts_list, name='posts_list_url'),
     path('faq/', views.faq, name='faq_url'),
     path('contacts/', views.contacts, name='contacts_url'),
