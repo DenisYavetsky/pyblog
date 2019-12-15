@@ -34,7 +34,9 @@
                 </div>
 
                 <div class="postbody">
-                    {{ post.body}}
+                        {% autoescape off %}
+                        {{ post.body }}
+                        {% endautoescape %}
                 </div>
 
                 <div class="postfooter">

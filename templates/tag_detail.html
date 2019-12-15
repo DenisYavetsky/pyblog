@@ -33,7 +33,7 @@
 
             <div class="postcard">
                 <div class="postpicture">
-                    <img src="{% static 'img/djangockeditr.png' %}" alt="">
+                    <img src="../../media/{{post.img}}" alt="Картинка поста"/>
                 </div>
 
                 <div class="posttitle">
@@ -41,11 +41,15 @@
                 </div>
 
                 <div class="postbody">
-                    {{ post.body|truncatewords:25}}
+                        {% autoescape off %}
+                        {{ post.body|truncatewords:25}}
+                        {% endautoescape %}
                 </div>
 
                 <div class="postfooter">
+
                     <span>{{ post.date_pub }}</span>
+
                 <br>
                     <span style="color:white; background-color:#289dcc; padding-left: 3px; padding-right: 3px; border-radius: 2px;">Теги:</span>
                     {% for tag in post.tags.all %}

@@ -32,7 +32,7 @@
 
             <div class="postcard">
                 <div class="postpicture">
-                    <img src="{% static 'img/djangockeditr.png' %}" alt="">
+                    <img src="../../media/{{post.img}}" alt="Картинка поста"/>
                 </div>
 
                 <div class="posttitle">
@@ -40,7 +40,9 @@
                 </div>
 
                 <div class="postbody">
-                    {{ post.body|truncatewords:25}}
+                        {% autoescape off %}
+                        {{ post.body|truncatewords:25}}
+                        {% endautoescape %}
                 </div>
 
                 <div class="postfooter">
