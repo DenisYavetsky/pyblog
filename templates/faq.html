@@ -40,10 +40,10 @@
                 <br>
                 <div class="postbody">
                      {% for faq in faqs %}
-                         <a href="#hidden1" onclick="view('hidden1'); return false"><h3>{{ faq.title }}</h3></a>
+                         <a href="{{ faq.slug }}" onclick="view('{{ faq.slug }}'); return false"><h3>{{ faq.title }}</h3></a>
                          <br>
 
-                         <div id="hidden1" style="display: none; margin-left:30px">
+                         <div id="{{ faq.slug }}" style="display: none; margin-left:30px">
                          {% autoescape off %}
                              {{ faq.body }}
                          {% endautoescape %}
