@@ -1,13 +1,14 @@
 from django.shortcuts import render
-from .models import Post, Tag, Category
+from .models import Post, Tag, Category, Faq
 from django.shortcuts import get_object_or_404
 
 
 def faq(request):
+    faqs = Faq.objects.all()
     posts = Post.objects.all()
     tags = Tag.objects.all()
     categories = Category.objects.all()
-    return render(request, 'faq.html', context={'posts': posts, 'tags': tags, 'categories': categories})
+    return render(request, 'faq.html', context={'faqs': faqs, 'posts': posts, 'tags': tags, 'categories': categories})
 
 
 def contacts(request):

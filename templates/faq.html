@@ -31,10 +31,24 @@
             <div class="postcard-large">
                 <div class="posttitle">
                     <h1>Большой F.A.Q.</h1>
+                    <br>
+                    <div>Раздел “Большой F.A.Q.” содержит ответы на вопросы возникающее в процессе моего погружения
+в мир web разработки и не несет в себе цель полноценного справочника по каким-либо
+технологиям или языкам. Если эта информация будет вам полезна, и вы решите с помощью нее
+вашу проблему, поставьте отметку «Мне помогло» данному вопросу.</div>
                 </div>
-
+                <br>
                 <div class="postbody">
-                     <br>
+                     {% for faq in faqs %}
+                         <a href="#hidden1" onclick="view('hidden1'); return false"><h3>{{ faq.title }}</h3></a>
+                         <br>
+
+                         <div id="hidden1" style="display: none; margin-left:30px">
+                         {% autoescape off %}
+                             {{ faq.body }}
+                         {% endautoescape %}
+                         </div>
+                     {% endfor %}
                      <br>
                      <br>
                      <br>
@@ -54,4 +68,5 @@
     {% include 'footer.html' %}
     </div>
 </body>
+    <script src={% static 'js/main.js' %}></script>
 </html>

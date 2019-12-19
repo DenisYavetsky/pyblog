@@ -42,3 +42,15 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('post_detail_url', kwargs={'slug': self.slug})
 
+
+class Faq(models.Model):
+    title = models.CharField(max_length=150, db_index=True)
+    slug = models.SlugField(max_length=150, unique=True)
+    body = RichTextUploadingField(blank=True)
+    date_pub = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}'.format(self.title)
+
+    def get_absolute_url(self):
+        return reverse('faq_url', kwargs={'slug': self.slug})

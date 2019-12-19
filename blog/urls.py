@@ -12,6 +12,7 @@ urlpatterns\
     path('faq/', views.faq, name='faq_url'),
     path('contacts/', views.contacts, name='contacts_url'),
     path('post/<str:slug>/', views.post_detail, name='post_detail_url'),
+    path('faq/<str:slug>/', views.faq, name='faq_url'),
     path('category/<str:slug>/', views.category_detail, name='category_detail_url'),
     path('tag/<str:slug>/', views.tag_detail, name='tag_detail_url'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
