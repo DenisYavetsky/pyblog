@@ -4,7 +4,11 @@
         <img class="graficfooter" src="{% static 'img/footer.jpg' %}" alt="footer">
         <div class="ftext">Перепечатывание материалов сайта с указанием первоисточника приветствуется.</div>
         <div class="ftext">Копирайт © 2019 Блог PYTHON разработчика. Все права защищены.</div>
+    </div>
 
-
+    <div class="botnav">
+        <a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
+        <a href="{% url 'faq_url' %}">БОЛЬШОЙ F.A.Q.</a>
+        <a href="{% url 'contacts_url' %}">КОНТАКТЫ</a>
     </div>
 </div>

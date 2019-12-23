@@ -1,6 +1,8 @@
 from django.db import models
 from django.shortcuts import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
+from django import forms
+
 
 class Tag(models.Model):
 
@@ -54,3 +56,12 @@ class Faq(models.Model):
 
     def get_absolute_url(self):
         return reverse('faq_url', kwargs={'slug': self.slug})
+
+
+class ContactForm(forms.Form):
+    '''форма обратной связи'''
+    subject = forms.CharField(widget=forms.TextInput(attrs={'class': 'back_form'}))
+    sender = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'back_form'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'class': 'back_form'}))
+
+

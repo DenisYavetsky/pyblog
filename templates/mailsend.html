@@ -34,32 +34,22 @@
                 </div>
 
                 <div class="postbody">
+                    <h3>Письмо отправлено</h3>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-                    <form action="{% url 'contacts_url' %}" method="post">{% csrf_token %}
-                        {{ form.non_field_errors }}
-	                    <div>
-	                        <label for="id_subject">Тема:</label>
-                            <p></p>
-	                        {{ form.subject.errors }}
-	                        {{ form.subject }}
-	                    </div>
-                        <br>
-	                    <div>
-	                    <label for="id_sender">E-mail:</label>
-                            <p></p>
-	                        {{ form.sender.errors }}
-	                        {{ form.sender }}
-	                    </div>
-                        <br>
-	                    <div>
-	                    <label for="id_message">Сообщение:</label>
-                            <p></p>
-	                        {{ form.message.errors }}
-	                        {{ form.message }}
-                        </div>
-                        <br>
-	                    <input type="submit" class="button" value="Отправить"/>
-                    </form>
                 </div>
             </div>
 
