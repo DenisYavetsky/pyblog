@@ -137,7 +137,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'yavetsky@gmail.com'
-EMAIL_HOST_PASSWORD = 'f3f7gd47$194'
+EMAIL_HOST_PASSWORD = '111'
 
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
