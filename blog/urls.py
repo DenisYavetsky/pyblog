@@ -5,10 +5,12 @@ from django.views.static import serve
 from django.conf.urls import url
 from django.conf.urls.static import static
 
+
 urlpatterns\
     = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', views.posts_list, name='posts_list_url'),
+    path('posts/', views.posts_list, name='posts_list_url'),
     path('faq/', views.faq, name='faq_url'),
     path('contacts/', views.contacts, name='contacts_url'),
     path('post/<str:slug>/', views.post_detail, name='post_detail_url'),

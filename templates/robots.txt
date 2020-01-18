@@ -1,0 +1,3 @@
+User-agent: *
+
+Sitemap: http://yavetsky.pythonanywhere.com/sitemap.xml
