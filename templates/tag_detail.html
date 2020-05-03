@@ -2,76 +2,80 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Блог python разработчика</title>
-<link rel="stylesheet" href={% static 'css/main.css' %}>
-<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Блог python разработчика. Теги</title>
+    <meta name="description"
+          content="Блог python разработчика. Фильтрация постов по тегам">
+    {% include 'ga.html' %}
+    <link rel="stylesheet" href={% static 'css/main.css' %}>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main-container">
-	<div class="top">
-		<div class="logo">
-			<img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
-		</div>
+<div class="main-container">
+    <div class="top">
+        <div class="logo">
+            <img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
+        </div>
 
         <div class="topnav">
             <a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
             <a href="{% url 'faq_url' %}">БОЛЬШОЙ F.A.Q.</a>
             <a href="{% url 'contacts_url' %}">КОНТАКТЫ</a>
         </div>
-	</div>
+    </div>
 
     <div class="middle">
 
-    {% include 'sidebar.html' %}
+        {% include 'sidebar.html' %}
 
-    <div class="content">
-        {% block content %}
+        <div class="content">
+            {% block content %}
 
 
-            {% for post in tag.posts.all %}
+                {% for post in tag.posts.all %}
 
-            <div class="postcard">
-                <div class="postpicture">
-                    <img src="{{post.img.url}}" alt="Картинка поста"/>
-                </div>
+                    <div class="postcard">
+                        <div class="postpicture">
+                            <img src="{{ post.img.url }}" alt="Картинка поста"/>
+                        </div>
 
-                <div class="posttitle">
-                    <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
-                </div>
+                        <div class="posttitle">
+                            <h1><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h1>
+                        </div>
 
-                <div class="postbody">
-                        {% autoescape off %}
-                        {{ post.body|truncatewords:25}}
-                        {% endautoescape %}
-                </div>
+                        <div class="postbody">
+                            {% autoescape off %}
+                                {{ post.body|truncatewords:25 }}
+                            {% endautoescape %}
+                        </div>
 
-                <div class="postfooter">
+                        <div class="postfooter">
 
-                    <span>{{ post.date_pub }}</span>
+                            <span>{{ post.date_pub }}</span>
+                            <div style="float: right;">&#128065; {{ post.count_views }} &nbsp;</div>
 
-                <br>
-                    <span style="color:white; background-color:#289dcc; padding-left: 3px; padding-right: 3px; border-radius: 2px;">Теги:</span>
-                    {% for tag in post.tags.all %}
-                    <span><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></span>
-                    {% endfor %}
-                <br>
-                    <span style="color:white; background-color:#2d3870; padding-left: 3px; padding-right: 3px; border-radius: 2px;">Категория:</span>
-                    {% for category in post.categories.all %}
-                    <span><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></span>
-                    {% endfor %}
-                </div>
+                            <br>
+                            <span style="color:white; background-color:#289dcc; padding-left: 3px; padding-right: 3px; border-radius: 2px;">Теги:</span>
+                            {% for tag in post.tags.all %}
+                                <span><a href="{{ tag.get_absolute_url }}">{{ tag.title }}</a></span>
+                            {% endfor %}
+                            <br>
+                            <span style="color:white; background-color:#2d3870; padding-left: 3px; padding-right: 3px; border-radius: 2px;">Категория:</span>
+                            {% for category in post.categories.all %}
+                                <span><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></span>
+                            {% endfor %}
+                        </div>
 
-                <div class="post_read">
-                    <a href="{{ post.get_absolute_url }}" >Читать</a>
-                </div>
-            </div>
-            {% endfor %}
-        {% endblock %}
-    </div>
+                        <div class="post_read">
+                            <a href="{{ post.get_absolute_url }}">Читать</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endblock %}
+        </div>
 
     </div>
     {% include 'footer.html' %}
-    </div>
+</div>
 </body>
 </html>

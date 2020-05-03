@@ -2,72 +2,80 @@
 <!doctype html>
 <html lang="ru">
 <head>
+
+    <meta charset="UTF-8">
+    <title>Блог python разработчика. Большой F.A.Q.</title>
+    <meta name="description"
+          content="Блог python разработчика.
+          Раздел “Большой F.A.Q.” содержит ответы на вопросы возникающее в процессе моего погружения
+          в мир web разработки и не несет в себе цель полноценного справочника по каким-либо
+          технологиям или языкам.">
     {% include 'ga.html' %}
-<meta charset="UTF-8">
-<title>Блог python разработчика</title>
-<link rel="stylesheet" href={% static 'css/main.css' %}>
-<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href={% static 'css/main.css' %}>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main-container">
-	<div class="top">
-		<div class="logo">
-			<img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
-		</div>
+<div class="main-container">
+    <div class="top">
+        <div class="logo">
+            <img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
+        </div>
 
         <div class="topnav">
             <a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
             <a href="{% url 'faq_url' %}">БОЛЬШОЙ F.A.Q.</a>
             <a href="{% url 'contacts_url' %}">КОНТАКТЫ</a>
         </div>
-	</div>
+    </div>
 
     <div class="middle">
 
-    {% include 'sidebar.html' %}
+        {% include 'sidebar.html' %}
 
-    <div class="content">
-        {% block content %}
+        <div class="content">
+            {% block content %}
 
-            <div class="postcard-large">
-                <div class="posttitle">
-                    <h1>Большой F.A.Q.</h1>
+                <div class="postcard-large">
+                    <div class="posttitle">
+                        <h1>Большой F.A.Q.</h1>
+                        <br>
+                        <div>Раздел “Большой F.A.Q.” содержит ответы на вопросы возникающее в процессе моего погружения
+                            в мир web разработки и не несет в себе цель полноценного справочника по каким-либо
+                            технологиям или языкам. Если эта информация будет вам полезна, и вы решите с помощью нее
+                            вашу проблему, поставьте отметку «Мне помогло» данному вопросу.
+                        </div>
+                    </div>
                     <br>
-                    <div>Раздел “Большой F.A.Q.” содержит ответы на вопросы возникающее в процессе моего погружения
-в мир web разработки и не несет в себе цель полноценного справочника по каким-либо
-технологиям или языкам. Если эта информация будет вам полезна, и вы решите с помощью нее
-вашу проблему, поставьте отметку «Мне помогло» данному вопросу.</div>
-                </div>
-                <br>
-                <div class="postbody">
-                     {% for faq in faqs %}
-                         <a href="{{ faq.slug }}" onclick="view('{{ faq.slug }}'); return false"><h3>{{ faq.title }}</h3></a>
-                         <br>
+                    <div class="postbody">
+                        {% for faq in faqs %}
+                            <a href="{{ faq.slug }}" onclick="view('{{ faq.slug }}'); return false">
+                                <h3>{{ faq.title }}</h3></a>
+                            <br>
 
-                         <div id="{{ faq.slug }}" style="display: none; margin-left:30px">
-                         {% autoescape off %}
-                             {{ faq.body }}
-                         {% endautoescape %}
-                         </div>
-                     {% endfor %}
-                     <br>
-                     <br>
-                     <br>
-                     <br>
-                     <br>
-                     <br>
-                     <br>
-                     <br>
-                     <br>
+                            <div id="{{ faq.slug }}" style="display: none; margin-left:30px">
+                                {% autoescape off %}
+                                    {{ faq.body }}
+                                {% endautoescape %}
+                            </div>
+                        {% endfor %}
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
                 </div>
-            </div>
 
-        {% endblock %}
-    </div>
+            {% endblock %}
+        </div>
 
     </div>
     {% include 'footer.html' %}
-    </div>
+</div>
 </body>
-    <script src={% static 'js/main.js' %}></script>
+<script src={% static 'js/main.js' %}></script>
 </html>

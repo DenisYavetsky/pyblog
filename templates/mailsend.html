@@ -2,62 +2,67 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>Блог python разработчика</title>
-<link rel="stylesheet" href={% static 'css/main.css' %}>
-<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Блог python разработчика. Форма обратной связи</title>
+    <meta name="description"
+          content="Блог python разработчика. Связаться со мной или написать можно через форму обратной связи.
+                   В рамках своей компетенции готов помочь новичкам web разработки. Также открыт к сотрудничеству на
+                   коммерческой основе.">
+    {% include 'ga.html' %}
+    <link rel="stylesheet" href={% static 'css/main.css' %}>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="main-container">
-	<div class="top">
-		<div class="logo">
-			<img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
-		</div>
+<div class="main-container">
+    <div class="top">
+        <div class="logo">
+            <img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
+        </div>
 
         <div class="topnav">
             <a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
             <a href="{% url 'faq_url' %}">БОЛЬШОЙ F.A.Q.</a>
             <a href="{% url 'contacts_url' %}">КОНТАКТЫ</a>
         </div>
-	</div>
+    </div>
 
     <div class="middle">
 
-    {% include 'sidebar.html' %}
+        {% include 'sidebar.html' %}
 
-    <div class="content">
-        {% block content %}
+        <div class="content">
+            {% block content %}
 
-            <div class="postcard-large">
-                <div class="posttitle">
-                    <h1>Контакты</h1>
+                <div class="postcard-large">
+                    <div class="posttitle">
+                        <h1>Контакты</h1>
+                    </div>
+
+                    <div class="postbody">
+                        <h3>Письмо отправлено</h3>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+
+                    </div>
                 </div>
 
-                <div class="postbody">
-                    <h3>Письмо отправлено</h3>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
-                </div>
-            </div>
-
-        {% endblock %}
-    </div>
+            {% endblock %}
+        </div>
 
     </div>
     {% include 'footer.html' %}
-    </div>
+</div>
 </body>
 </html>

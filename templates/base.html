@@ -2,35 +2,40 @@
 <!doctype html>
 <html lang="ru">
 <head>
+
+    <meta charset="UTF-8">
+    <title>Блог python разработчика. Список постов</title>
+    <meta name="description"
+          content="Блог python разработчика. В разделе представлен список постов, публиаций на тему программирование и
+                   разработка на языке python. Публикаци разделены на категории и теги для поиска статей определенной
+                   тематики.">
     {% include 'ga.html' %}
-<meta charset="UTF-8">
-<title>Блог python разработчика</title>
-<link rel="stylesheet" href={% static 'css/main.css' %}>
-<link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
-<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+    <link rel="stylesheet" href={% static 'css/main.css' %}>
+    <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
 </head>
 <body>
-    <div class="main-container">
-	<div class="top">
-		<div class="logo">
-			<img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
-		</div>
+<div class="main-container">
+    <div class="top">
+        <div class="logo">
+            <img class="graficlogo" src="{% static 'img/logo.jpg' %}" alt="Logo">
+        </div>
 
         <div class="topnav">
             <a href="{% url 'posts_list_url' %}">НА ГЛАВНУЮ</a>
             <a href="{% url 'faq_url' %}">БОЛЬШОЙ F.A.Q.</a>
             <a href="{% url 'contacts_url' %}">КОНТАКТЫ</a>
         </div>
-	</div>
+    </div>
 
     <div class="middle">
 
-    {% include 'sidebar.html' %}
-    {% include 'content.html' %}
+        {% include 'sidebar.html' %}
+        {% include 'content.html' %}
 
     </div>
     {% include 'footer.html' %}
-    </div>
+</div>
 </body>
 
 </html>
