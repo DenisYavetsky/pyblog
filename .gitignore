@@ -6,7 +6,7 @@ __pycache__
 db.sqlite3
 media
 /setting.py
-*/migrations/*
+blog/migrations/*
 
 # Backup files # 
 *.bak 
