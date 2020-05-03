@@ -1,10 +1,21 @@
 from django.shortcuts import render
-from .models import Post, Tag, Category, Faq, ContactForm
+from .models import Post, Tag, Category, Faq, ContactForm, PostLikes, PostCountViews
 from django.shortcuts import get_object_or_404
 
-#from django.core.mail import send_mail, BadHeaderError
-#from django.http import HttpResponse
+
 from django.core.mail import EmailMessage
+from django.http import HttpResponseRedirect
+
+
+
+def addlike(request, slug):
+    session_key = request.session.session_key
+    likes = PostLikes.objects.filter(sessionId=session_key)
+    post = get_object_or_404(Post, slug__iexact=slug)  # возвращает id статьи или 404.
+    post.like_count += 1  # Прибавляет единицу к article_likes
+    post.save()  # сохраняет
+    return HttpResponseRedirect('/')  # делает редирект на ту же страницу
+
 
 def faq(request):
     faqs = Faq.objects.all()
@@ -53,10 +64,35 @@ def posts_list(request):
 
 
 def post_detail(request, slug):
+
+    # Получаем все теги и категории для бокового меню
     tags = Tag.objects.all()
     categories = Category.objects.all()
+
+    # Проверяем есть ли пост с запрашиваемым слагом
     post = get_object_or_404(Post, slug__iexact=slug)
+
+    # если пост найден проверяем есть ли у него просмотры по id поста и sesId
+    session_key = request.session.session_key
+
+    is_views = PostCountViews.objects.filter(postId=post.id, sesId=session_key)
+
+    # если нет информации о просмотрах создаем ее
+    if is_views.count() == 0 and str(session_key) != 'None':
+
+        views = PostCountViews()
+        views.sesId = session_key
+        views.postId = post
+        views.save()
+
+        post.count_views += 1
+        post.save()
+
     return render(request, 'post_detail.html', context={'post': post, 'tags': tags, 'categories': categories})
+
+
+
+
 
 
 def tag_detail(request, slug):

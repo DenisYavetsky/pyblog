@@ -6,13 +6,13 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 
 
-urlpatterns\
-    = [
+urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', views.posts_list, name='posts_list_url'),
     path('posts/', views.posts_list, name='posts_list_url'),
     path('faq/', views.faq, name='faq_url'),
     path('contacts/', views.contacts, name='contacts_url'),
+    path('post/addlike/<str:slug>/', views.addlike, name='addlike'),
     path('post/<str:slug>/', views.post_detail, name='post_detail_url'),
     path('faq/<str:slug>/', views.faq, name='faq_url'),
     path('category/<str:slug>/', views.category_detail, name='category_detail_url'),
