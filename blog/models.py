@@ -1,6 +1,6 @@
 from django.db import models
-from django.shortcuts import reverse
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.shortcuts import reverse
 from django import forms
 
 
@@ -33,15 +33,27 @@ class Category(models.Model):
 
 
 class Post(models.Model):
+    # название публикации
     title = models.CharField(max_length=150, db_index=True)
+    # уникальный идентификатор
     slug = models.SlugField(max_length=150, unique=True)
+    # счетчик просмотров
     count_views = models.IntegerField(default=0)
     like_count = models.IntegerField(default=0)
+    # текст статьи
     body = RichTextUploadingField(blank=True)
+    # дата публикации
     date_pub = models.DateField(auto_now_add=True)
+    # к какому разделу относится статья
     categories = models.ManyToManyField('Category', blank=True, related_name='posts')
+    # связанные теги для статьи
     tags = models.ManyToManyField('Tag', blank=True, related_name='posts')
+    # изображение
     img = models.ImageField(upload_to='images/', blank=True)
+
+    class Meta:
+        ordering = ['-date_pub']
+
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -80,5 +92,10 @@ class PostLikes(models.Model):
 
 
 class PostCountViews(models.Model):
+    # привязка к пользователю (сессии пользователя)
     sesId = models.CharField(max_length=150, db_index=True)
+    # привязка к посту
     postId = models.ForeignKey(Post, blank=True, null=True, default=None, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}'.format(self.sesId)

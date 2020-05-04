@@ -49,7 +49,7 @@
                     <div class="postbody">
                         {% for faq in faqs %}
                             <a href="{{ faq.slug }}" onclick="view('{{ faq.slug }}'); return false">
-                                <h3>{{ faq.title }}</h3></a>
+                                <h4>{{ faq.title }}</h4></a>
                             <br>
 
                             <div id="{{ faq.slug }}" style="display: none; margin-left:30px">

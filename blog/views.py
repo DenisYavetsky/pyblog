@@ -57,7 +57,7 @@ def contacts(request):
 
 
 def posts_list(request):
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('-date_pub')
     tags = Tag.objects.all()
     categories = Category.objects.all()
     return render(request, 'main.html', context={'posts': posts, 'tags': tags, 'categories': categories})
