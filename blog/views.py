@@ -72,14 +72,18 @@ def post_detail(request, slug):
     # Проверяем есть ли пост с запрашиваемым слагом
     post = get_object_or_404(Post, slug__iexact=slug)
 
-    # если пост найден проверяем есть ли у него просмотры по id поста и sesId
+    # получаем сессию
     session_key = request.session.session_key
 
+    if not session_key:
+        request.session.save()
+
+    # если пост найден проверяем есть ли у него просмотры по id поста и sesId
     is_views = PostCountViews.objects.filter(postId=post.id, sesId=session_key)
 
     # если нет информации о просмотрах создаем ее
     if is_views.count() == 0 and str(session_key) != 'None':
-
+        print(session_key)
         views = PostCountViews()
         views.sesId = session_key
         views.postId = post
