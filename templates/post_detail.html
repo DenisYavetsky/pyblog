@@ -2,10 +2,12 @@
 <!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Блог python разработчика. Страница поста</title>
-    <meta name="description"
-          content="Блог python разработчика. Страница поста">
+    {% block title %}
+        <meta charset="UTF-8">
+        <title>Блог python разработчика. {{ post.title }}</title>
+        <meta name="description"
+              content="Блог python разработчика. Страница поста">
+    {% endblock %}
     {% include 'ga.html' %}
     <link rel="stylesheet" href={% static 'css/main.css' %}>
     <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans&display=swap" rel="stylesheet">
@@ -46,6 +48,7 @@
                     <div class="postfooter">
                         <span>{{ post.date_pub }}</span>
                         <div style="float: right;">&#128065; {{ post.count_views }} &nbsp;</div>
+                        <div style="float: right;">&#9998; {{ post.comment_count }} &nbsp;</div>
                         <br>
                         <span style="color:white; background-color:#289dcc; padding-left: 3px; padding-right: 3px; border-radius: 2px;">Теги:</span>
                         {% for tag in post.tags.all %}
@@ -57,6 +60,32 @@
                             <span><a href="{{ category.get_absolute_url }}">{{ category.title }}</a></span>
                         {% endfor %}
                     </div>
+                </div>
+                <div class="comment">
+
+                    <h4>Комментарии</h4>
+                    {% for comment in comments %}
+                        <div class="comment-name">
+                            Пользователь <b>{{ comment.name }}</b> написал {{ comment.date }}
+                        </div>
+                        <p></p>
+                        <div class="comment-text">
+                            {{ comment.text }}
+                        </div>
+                        <br>
+                    {% endfor %}
+                    <hr style="border: 1px solid black;">
+                    <p></p>
+                    <h4>Добавить комментарий</h4>
+                    <form action="{{ post.get_absolute_url }}" method="post">{% csrf_token %}
+                        {{ c_form.as_p }}
+                        <div style="margin-left: 15px">
+                            <input type="submit" class="button-small" value="Отправить"/>
+                        </div>
+                    </form>
+                    <p></p>
+
+
                 </div>
             {% endblock %}
         </div>

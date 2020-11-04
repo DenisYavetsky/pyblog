@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .models import Post, Tag, Category, Faq, ContactForm, PostLikes, PostCountViews
+from .models import Post, Tag, Category, Faq, ContactForm, PostLikes, PostCountViews, Comment
 from django.shortcuts import get_object_or_404
-
+from .forms import CommentForm
+from django.shortcuts import redirect
 
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
@@ -65,12 +66,35 @@ def posts_list(request):
 
 def post_detail(request, slug):
 
+    #
+    #c_form = CommentForm()
+    c_form = CommentForm()
     # Получаем все теги и категории для бокового меню
     tags = Tag.objects.all()
     categories = Category.objects.all()
 
     # Проверяем есть ли пост с запрашиваемым слагом
     post = get_object_or_404(Post, slug__iexact=slug)
+    comments = Comment.objects.filter(post=post.id)
+
+
+
+    if request.method == 'POST':
+        c_form = CommentForm(request.POST)
+        if c_form.is_valid():
+
+            Comm = c_form.save(commit=False)
+            #name = c_form.cleaned_data['name']
+            #text = c_form.cleaned_data['text']
+            #Com.name = name
+            #Com.text = text
+            Comm.post = post
+            Comm.save()
+            post.comment_count = comments.count()
+            post.save()
+            return redirect(request.path)
+
+
 
     if not request.session.session_key:
         request.session.save()
@@ -81,7 +105,7 @@ def post_detail(request, slug):
 
     # если нет информации о просмотрах создаем ее
     if is_views.count() == 0 and str(session_key) != 'None':
-        print(session_key)
+
         views = PostCountViews()
         views.sesId = session_key
         views.postId = post
@@ -90,7 +114,7 @@ def post_detail(request, slug):
         post.count_views += 1
         post.save()
 
-    return render(request, 'post_detail.html', context={'post': post, 'tags': tags, 'categories': categories})
+    return render(request, 'post_detail.html', context={'post': post, 'tags': tags, 'categories': categories, 'comments': comments, 'c_form': c_form})
 
 
 

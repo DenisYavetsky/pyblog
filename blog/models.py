@@ -4,12 +4,7 @@ from django.shortcuts import reverse
 from django import forms
 
 
-
-
-
-
 class Tag(models.Model):
-
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True)
 
@@ -21,7 +16,6 @@ class Tag(models.Model):
 
 
 class Category(models.Model):
-
     title = models.CharField(max_length=150, db_index=True)
     slug = models.SlugField(max_length=150, unique=True)
 
@@ -39,6 +33,8 @@ class Post(models.Model):
     slug = models.SlugField(max_length=150, unique=True)
     # счетчик просмотров
     count_views = models.IntegerField(default=0)
+    # счетчик коментариев
+    comment_count = models.IntegerField(default=0)
     like_count = models.IntegerField(default=0)
     # текст статьи
     body = RichTextUploadingField(blank=True)
@@ -53,7 +49,6 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-date_pub']
-
 
     def __str__(self):
         return '{}'.format(self.title)
@@ -82,7 +77,6 @@ class ContactForm(forms.Form):
     message = forms.CharField(widget=forms.Textarea(attrs={'class': 'back_form'}))
 
 
-
 class PostLikes(models.Model):
     sessionId = models.CharField(default=True, max_length=128)
     postId = models.ForeignKey(Post, blank=True, null=True, default=None, on_delete=models.CASCADE)
@@ -99,3 +93,16 @@ class PostCountViews(models.Model):
 
     def __str__(self):
         return '{}'.format(self.sesId)
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, blank=False)
+    text = models.TextField(max_length=1000)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-date']
+
+    def __str__(self):
+        return '{} {}'.format(self.name, self.text)
