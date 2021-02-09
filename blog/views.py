@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 
 from django.core.mail import EmailMessage
 from django.http import HttpResponseRedirect
-
+import random
 
 
 def addlike(request, slug):
@@ -66,8 +66,6 @@ def posts_list(request):
 
 def post_detail(request, slug):
 
-    #
-    #c_form = CommentForm()
     c_form = CommentForm()
     # Получаем все теги и категории для бокового меню
     tags = Tag.objects.all()
@@ -77,24 +75,21 @@ def post_detail(request, slug):
     post = get_object_or_404(Post, slug__iexact=slug)
     comments = Comment.objects.filter(post=post.id)
 
-
+    #делаем защиту от ботов
+    a = random.randint(1, 10)
+    b = random.randint(1, 10)
+    math_res = a + b
 
     if request.method == 'POST':
         c_form = CommentForm(request.POST)
         if c_form.is_valid():
-
-            Comm = c_form.save(commit=False)
-            #name = c_form.cleaned_data['name']
-            #text = c_form.cleaned_data['text']
-            #Com.name = name
-            #Com.text = text
-            Comm.post = post
-            Comm.save()
-            post.comment_count = comments.count()
-            post.save()
-            return redirect(request.path)
-
-
+            if int(request.POST['check_sum']) == math_res:
+                Comm = c_form.save(commit=False)
+                Comm.post = post
+                Comm.save()
+                post.comment_count = comments.count()
+                post.save()
+                return redirect(request.path)
 
     if not request.session.session_key:
         request.session.save()
@@ -114,7 +109,7 @@ def post_detail(request, slug):
         post.count_views += 1
         post.save()
 
-    return render(request, 'post_detail.html', context={'post': post, 'tags': tags, 'categories': categories, 'comments': comments, 'c_form': c_form})
+    return render(request, 'post_detail.html', context={'post': post, 'tags': tags, 'categories': categories, 'comments': comments, 'c_form': c_form, 'protect': [a, b]})
 
 
 

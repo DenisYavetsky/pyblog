@@ -9,9 +9,11 @@ class CommentForm(forms.ModelForm):
         fields = ('name', 'text')
         # псевдонимы полей для заполнения
         labels = {'name': 'Представьтесь',
-                  'text': 'Ваш комментарий'}
+                  'text': 'Ваш комментарий',
+                  }
 
     def __init__(self, *args, **kwargs):
         super(CommentForm, self).__init__(*args, **kwargs)
         self.fields['name'].widget.attrs.update({'class': 'back_form'})
         self.fields['text'].widget.attrs.update({'class': 'back_form'})
+
