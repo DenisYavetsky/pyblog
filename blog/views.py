@@ -84,12 +84,13 @@ def post_detail(request, slug):
         c_form = CommentForm(request.POST)
         if c_form.is_valid():
             if int(request.POST['check_sum']) == math_res:
-                Comm = c_form.save(commit=False)
-                Comm.post = post
-                Comm.save()
-                post.comment_count = comments.count()
-                post.save()
-                return redirect(request.path)
+                if request.POST['name'] not in ['teahGackpeta', 'FurneInosse', 'TiceDuesite', 'excelaysuelapaw', 'excelaysuelapaw', 'Sypepalsslato']:
+                    Comm = c_form.save(commit=False)
+                    Comm.post = post
+                    Comm.save()
+                    post.comment_count = comments.count()
+                    post.save()
+            return redirect(request.path)
 
     if not request.session.session_key:
         request.session.save()
