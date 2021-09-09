@@ -4,6 +4,12 @@
 }
 
 a{
+	color: #06009c !important;
+	text-decoration: none;
+}
+
+a:hover{
+	color: #2acaff !important;
 	text-decoration: none;
 }
 
@@ -53,10 +59,14 @@ body{
 
 }
 .topnav a{
-	color: #ffffff;
+	color: #ffffff !important;
 	text-align: center;
 	padding: 14px 30px;
 	font-size: 17px;
+}
+.topnav a:hover{
+	color: #2acaff !important;
+	text-decoration: none;
 }
 
 .topnav a:hover{
@@ -111,14 +121,15 @@ body{
 
 }
 .botnav a{
-	color: #ffffff;
+	color: #ffffff !important;
 	text-align: center;
 	padding: 14px 10px;
 	font-size: 14px;
 }
 
 .botnav a:hover{
-	color: #3765ff;
+	color: #2acaff !important;
+	text-decoration: none;
 }
 
 
