@@ -159,10 +159,10 @@ body{
 }
 
 .postcard a{
-	color: #000000;
+	color: #ffffff !important;
 }
 .postcard a:hover{
-	color: #3765ff
+	color: #2acaff !important;
 }
 .postpicture img{
 	max-width:100%;
