@@ -76,19 +76,11 @@ def post_detail(request, slug):
     post = get_object_or_404(Post, slug__iexact=slug)
     comments = Comment.objects.filter(post=post.id)
 
-    # if request.method != 'POST':
-    #    a = random.randint(1, 10)
-    #    b = random.randint(1, 10)
-    #    math_res = a + b
-
     if request.method == 'POST':
 
         c_form = CommentForm(request.POST)
         if c_form.is_valid():
-            # if int(request.POST['check_sum']) == math_res:
-            # print('123')
-            if request.POST['name'] not in ['teahGackpeta', 'FurneInosse', 'TiceDuesite', 'excelaysuelapaw',
-                                            'excelaysuelapaw', 'Sypepalsslato']:
+            if 'http' not in str(request.POST['text']):
                 Comm = c_form.save(commit=False)
                 Comm.post = post
                 Comm.save()
