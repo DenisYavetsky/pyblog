@@ -11,6 +11,7 @@ blog/migrations/*
 /static
 .htaccess
 passenger_wsgi.py
+tmp/
 
 # Backup files # 
 *.bak 
