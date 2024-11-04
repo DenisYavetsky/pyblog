@@ -2,7 +2,7 @@ from django.urls import path, include
 from blog import views
 from django.conf import settings
 from django.views.static import serve
-from django.conf.urls import url
+
 from django.conf.urls.static import static
 
 
@@ -23,7 +23,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += [
-        url(r'^media/(?P<path>.*)$', serve, {
+        path(r'^media/(?P<path>.*)$', serve, {
             'document_root': settings.MEDIA_ROOT
         }),
     ]
